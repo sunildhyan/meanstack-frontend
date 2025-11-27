@@ -1,0 +1,63 @@
+<main class="bg-gray-100 flex items-center justify-center p-6" style="min-height: calc(100vh - 100px);">
+    <div class="bg-white rounded-3xl shadow-lg p-10 w-full max-w-md">
+
+        <!-- Form Title -->
+        <h2 class="text-3xl font-extrabold text-gray-800 mb-8 text-center tracking-wide">
+            Add New Product
+        </h2>
+
+        <!-- Product Form -->
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="space-y-6">
+
+            <!-- Product Name -->
+            <div>
+                <label class="block text-gray-700 font-medium mb-2">Product Name</label>
+                <input formControlName="name" type="text" placeholder="Enter product name"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:outline-none transition duration-200" />
+                <p *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    Name is required.
+                </p>
+            </div>
+
+            <!-- Price -->
+            <div>
+                <label class="block text-gray-700 font-medium mb-2">Price ($)</label>
+                <input formControlName="price" type="number" placeholder="Enter product price"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:outline-none transition duration-200" />
+                <p *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    Price must be a positive number.
+                </p>
+            </div>
+
+            <!-- Category -->
+            <div>
+                <label class="block text-gray-700 font-medium mb-2">Category</label>
+                <select formControlName="category"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-400 focus:outline-none transition duration-200">
+                    <option value="">Select Category</option>
+                    <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+                </select>
+                <p *ngIf="productForm.get('category')?.invalid && productForm.get('category')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    Category is required.
+                </p>
+            </div>
+
+            <!-- In Stock -->
+            <div class="flex items-center space-x-3">
+                <input type="checkbox" formControlName="inStock"
+                    class="w-5 h-5 text-purple-500 focus:ring-purple-400 border-gray-300 rounded" />
+                <label class="text-gray-700 font-medium">In Stock</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" [disabled]="productForm.invalid"
+                class="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 rounded-xl shadow-md transition transform hover:scale-105 disabled:opacity-50">
+                Add Product
+            </button>
+
+        </form>
+    </div>
+</main>
