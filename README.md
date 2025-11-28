@@ -1,8 +1,5 @@
 Product Inventory Dashboard
 
-Applicant: Sunil Dhyani
-
-
 A full-stack inventory management dashboard built with Angular, Tailwind CSS, and a lightweight Node.js (Express) API with a simple JSON-based data store.
 
 Project Overview
